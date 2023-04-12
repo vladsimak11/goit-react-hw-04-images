@@ -20,14 +20,18 @@ export class ImageGallery extends Component {
     prevState.currentPage = 1;
     if(prevProps.searchValue !== searchValue && searchValue) {
       
-      this.setState({
-        images: [],
-        currentPage: 1,
-      });
+      this.onResetState();
 
       this.getImages();
     } 
 
+  }
+
+  onResetState = () => {
+    this.setState({
+      images: [],
+      currentPage: 1,
+    });
   }
 
   getImages = () => {
