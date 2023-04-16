@@ -2,7 +2,7 @@ import { useState } from 'react';
 import css from './Searchbar.module.css';
 import propTypes from 'prop-types';
 
-export const Searchbar = ({createSearchValue}) => {
+export const Searchbar = ({onSubmit}) => {
   const [valueQuery, setValueQuery] = useState('');
   
   const handleChange = ({target: {value}}) => {
@@ -11,11 +11,9 @@ export const Searchbar = ({createSearchValue}) => {
 
   const handleSumbit = (e) => {
     e.preventDefault();
-    createSearchValue(valueQuery);
-    resetForm();
+    onSubmit(valueQuery);
+    setValueQuery('');
   }
-
-  const resetForm = () => setValueQuery('');
 
   return (
     <header className={css.searchBar}>
@@ -40,5 +38,5 @@ export const Searchbar = ({createSearchValue}) => {
 }
 
 Searchbar.propTypes = {
-  createSearchValue: propTypes.func.isRequired,
+  onSubmit: propTypes.func.isRequired,
 };
